@@ -1,31 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
+  <meta charset="utf-8">
+  <title>The Game</title>
    <link rel="stylesheet" type="text/css" href="style/style.css">
     <meta charset="UTF-8" />
-    <title>The Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+        
 </head>
+
 <body>
+ 
   <section>
    <h1>Can you get home safely?</h1>
-     <a href="#">
+     
        <img src="img/Blue-spookywoods2.jpg" alt="blue tinted spooky woods">
-     </a>
-   <p>Click on the trail to start</p>
-  
-   
-   </section>
-   
-   
+       <input id="button" type="submit" name="button" onclick="myFunction();" value="enter, if you dare..."/>
+  </section>
+      
    <footer>
-     <audio controls loop>
-     <source src="media/Mystified_-_03_-_Spooky_Theme.mp3">
      
-   </audio>
+     <p>
+      Spooky Theme by <a href="http://freemusicarchive.org/music/Mystified/" target="_blank">Mystified</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Attribution-NonCommercial-ShareAlike License</a>
+       <a href="http://freemusicarchive.org/music/Mystified/Traveller_Soundtrack_Selections/03_mystified_-_spooky_theme" target="_blank">http://freemusicarchive.org/music/Mystified/Traveller_Soundtrack_Selections/03_mystified_-_spooky_theme</a>
+     </p>
+   <!-- Can audio tag be styled with CSS, is there volume control -->
+     <audio autoplay loop controls>
+       <source src="media/Mystified_-_03_-_Spooky_Theme.mp3">
+       Please click the music link above to hear the spooky theme.
+     </audio>
+   
+ </footer>
+   
+ <script>
+
+//NN to investigate offering three states of play, continue game, safely home, and caught by killer (s)
+//NN output to webpage to update picture with each direction prompt,or show home picture or random killer picture picked from //list.
+//
      
-   </footer>
+function myFunction(){
+  
+  // Define the size of the game play area
+var maxX = 5
+var maxY = 5
+
+// User starts at x0, y0 (bottom left of board)
+var userX = 0
+var userY = 0
+
+// Hide the treasure, also with x y values
+//var treasureX = 2
+//var treasureY = 1
+
+//Killer Monster 
+var killerX = Math.floor((Math.random() * maxX) + 1)
+var killerY = Math.floor((Math.random() * maxY) + 1)
+
+// Flag that controls loop 
+var killerFound = false
+
+
+
+//alert("You button was pressed");
+//console.log("Hello World");
+//var name = prompt("Welcome brave adventurer! What are you called?");
+  // Get user's name
+var name = prompt("What name shall we put on your tombstone?")
+console.log("Run " +name+ " before they get you!!!")
+
+
+while(!killerFound){
+  var direction = prompt("Which are you going to run? (north, south, east, west)")
+  
+  console.log(direction)
+  
+  // tmp vars, only used for checking validity of new user location after move
+  var newX 
+  var newY
+  
+  // When new direction entered:
+  // see what new user location would be
+  // check if new user location is valid
+  // check if new user location is treasure
+  
+  if(direction == "north"){
+    newX = userX 
+    newY = userY + 1
+    // neither value < 0, neither is > max
+    if(newX >= 0 && newY >= 0 && newX <= maxX && newY <= maxY){
+      userX = newX 
+      userY = newY
+      
+    }else {
+     console.log("You stop just in time before plummeting over the edge of a huge cliff") 
+    }
+ 
+  }else if(direction == "east"){
+    newX = userX + 1
+    newY = userY 
+    // neither value < 0, neither is > max
+    if(newX >= 0 && newY >= 0 && newX <= maxX && newY <= maxY){
+      userX = newX 
+      userY = newY
+    }else {
+     console.log("You feel a sudden shock as you run into an electrified fence") 
+    }
+    
+  }else if(direction == "south"){
+    newX = userX 
+    newY = userY - 1 
+    // neither value < 0, neither is > max
+    if(newX >= 0 && newY >= 0 && newX <= maxX && newY <= maxY){
+      userX = newX 
+      userY = newY
+    }else {
+     console.log("You've gone off the trail and the thick undergrowth blocks your way.") 
+    }
+    
+  }else if(direction == "west"){
+    newX = userX - 1
+    newY = userY
+    // neither value < 0, neither is > max
+    if(newX >= 0 && newY >= 0 && newX <= maxX && newY <= maxY){
+      userX = newX 
+      userY = newY
+    }else {
+     console.log("You hear the sound of footsteps on the leaves, you stop and go another way.") 
+    }
+    
+  }else {
+   console.log("Don't waste time please enter a real direction to run.") 
+  }
+  
+  console.log("The user's x is: " + userX)
+  console.log("The user's y is: " + userY)
+  
+  
+  // see if user location matches treasure
+  if(userX == killerX && userY == killerY){
+    console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel of the axe sink into your chest. You were killed. Better luck next time")
+    
+   killerFound = true 
+  }
+}
+  }
+  
+</script>
     
 </body>
 </html>
