@@ -1,0 +1,33 @@
+body {
+
+background-color: black;
+font-family: 'Creepster', cursive;
+color: crimson;
+display: flex;
+flex-direction: column;
+font-size: 99%;
+
+}
+
+section {
+  
+  
+  margin: auto;
+}
+
+img {
+  width: 99%;
+}
+
+footer {
+  
+  margin: auto;
+}
+
+a:hover {
+  font-size: 2em;
+  box-shadow: 0 0 495px 50px red;
+  /*color: red;*/
+  
+  
+}
