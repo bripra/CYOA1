@@ -24,13 +24,16 @@
      
      <p>
       Spooky Theme by <a href="http://freemusicarchive.org/music/Mystified/" target="_blank">Mystified</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Attribution-NonCommercial-ShareAlike License</a>
+      </p>
        <a href="http://freemusicarchive.org/music/Mystified/Traveller_Soundtrack_Selections/03_mystified_-_spooky_theme" target="_blank">http://freemusicarchive.org/music/Mystified/Traveller_Soundtrack_Selections/03_mystified_-_spooky_theme</a>
-     </p>
+       
+     <p>
    <!-- Can audio tag be styled with CSS, is there volume control -->
      <audio autoplay loop controls>
        <source src="media/Mystified_-_03_-_Spooky_Theme.mp3">
        Please click the music link above to hear the spooky theme.
      </audio>
+     </p>
    
  </footer>
    
@@ -46,6 +49,9 @@ function myFunction(){
 var maxX = 5
 var maxY = 5
 
+//Randomly define the size of the game play area.
+
+
 // User starts at x0, y0 (bottom left of board)
 var userX = 0
 var userY = 0
@@ -54,12 +60,19 @@ var userY = 0
 //var treasureX = 2
 //var treasureY = 1
 
-//Killer Monster 
+//Killer Monster location generated randomly based on maxX and maxY variables
 var killerX = Math.floor((Math.random() * maxX) + 1)
 var killerY = Math.floor((Math.random() * maxY) + 1)
 
+//Safe home location generated randomly based on maxX and maxY variables
+var safeHomeX = Math.floor((Math.random() * maxX) + 1)
+var safeHomeY = Math.floor((Math.random() * maxY) + 1)
+
 // Flag that controls loop 
 var killerFound = false
+
+// Flag that controls loop
+var safeHomeFound = false
 
 
 
@@ -143,6 +156,12 @@ while(!killerFound){
     console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel of the axe sink into your chest. You were killed. Better luck next time")
     
    killerFound = true 
+  }
+    // see if user location matches treasure
+  if(userX == safeHomeX && userY == safeHomeY){
+    console.log("You emerge from the woods on to a road where your friends have come to look for you.")
+    
+   safeHomeFound = true 
   }
 }
   }
