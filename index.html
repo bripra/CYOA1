@@ -18,6 +18,15 @@
      
        <img src="img/Blue-spookywoods2.jpg" alt="blue tinted spooky woods">
        <input id="button" type="submit" name="button" onclick="myFunction();" value="enter, if you dare..."/>
+       <details>
+       <summary>Click for instructions on how to play</summary>
+          <p>
+           To play game push f12 to open the 'developers tools'<br>
+           In the top menu choose 'Console'<br>
+           Then come back and push the 'Enter if you dare' button above<br>
+          </p>
+       </details>
+
   </section>
       
    <footer>
@@ -64,8 +73,8 @@ var killerX = Math.floor((Math.random() * maxX) + 1)
 var killerY = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location. 
-console.log("           Killer location    " +killerX)
-console.log("           Killer location    " +killerY)
+console.log("               Killer location    " +killerX)
+console.log("               Killer location    " +killerY)
 
 //Testing - killer non-random location. 
 //var killerX = 4
@@ -80,16 +89,16 @@ var safeHomeX = Math.floor((Math.random() * maxX) + 1)
 var safeHomeY = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location
-console.log("             Safety location    " +safeHomeX)
-console.log("             Safety location    " +safeHomeY)
+console.log("                 Safety location    " +safeHomeX)
+console.log("                 Safety location    " +safeHomeY)
 
 //Safe Home location generated randomly based on maxX and maxY variables
 var mameX = Math.floor((Math.random() * maxX) + 1)
 var mameY = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location
-console.log("             Safety location    " +mameX)
-console.log("             Safety location    " +mameY)
+console.log("                Mame location    " +mameX)
+console.log("                Mame location    " +mameY)
 
 // Flag that controls loop 
 var killerFound = false
@@ -100,11 +109,11 @@ var safeHomeFound = false
 // Flag that controls loop
 var mamingFound = false
 
-
+console.log("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
 
   // Get user's name
-var name = prompt("What name shall we put on your tombstone?")
-console.log("Run " +name+ " before they get you!!!")
+var name = prompt("What name will Search and Rescue call out to find you?")
+console.log("Snapping twigs and a rustle of brush, run " +name+ " before they get you!!!")
 
 
 while(!killerFound){
