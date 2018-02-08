@@ -40,7 +40,6 @@ footer {
   background-color: #000000;
   color: #ffffff;
   width: 50%;
-  height: 200%;
   font-family: 'Creepster', cursive;
   font-size: 135%;
   border-radius: 50em;
@@ -61,11 +60,9 @@ details {
   text-align: center;
 }
 
-details p {
-  /*background-color: white;*/
+.instructions {
   color: #ffffff;
   font-size: 1.5em;
-  /*font-family: serif;*/
   text-align: left;
   padding: 1%;
   
