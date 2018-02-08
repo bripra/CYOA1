@@ -1,3 +1,5 @@
+*:focus {outline:none}
+
 body {
 
 background-color: black;
@@ -13,6 +15,7 @@ h1 {
   font-size: 3em;
   text-align: center;
   margin: auto;
+  
 }
 
 section {
@@ -37,7 +40,8 @@ footer {
 
 /* entry bar styling */
 #button {
-  background-color: red;
+  background-color: #000000;
+  color: #ffffff;
   width: 50%;
   height: 200%;
   font-family: 'Creepster', cursive;
@@ -51,8 +55,8 @@ footer {
 }
 
 #button:hover {
-    background-color: #000000;
-    color: white;
+    background-color: red;
+    color: #000000;
 }
 
 /* Link styling */

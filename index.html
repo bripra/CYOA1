@@ -29,7 +29,7 @@
        
      <p>
    <!-- Can audio tag be styled with CSS, is there volume control -->
-     <audio autoplay loop controls>
+     <audio autoplay loop controls id="myaudio">
        <source src="media/Mystified_-_03_-_Spooky_Theme.mp3">
        Please click the music link above to hear the spooky theme.
      </audio>
@@ -38,16 +38,19 @@
  </footer>
    
  <script>
+//Volume control for audio playback. Original clip very loud.
+   var audio = document.getElementById("myaudio");
+  audio.volume = 0.02;
+      
 
-//NN to investigate offering three states of play, continue game, safely home, and caught by killer (s)
 //NN output to webpage to update picture with each direction prompt,or show home picture or random killer picture picked from //list.
 //
      
 function myFunction(){
   
   // Define the size of the game play area
-var maxX = 5
-var maxY = 5
+var maxX = 8
+var maxY = 8
 
 //Randomly define the size of the game play area.
 
@@ -56,29 +59,49 @@ var maxY = 5
 var userX = 0
 var userY = 0
 
-// Hide the treasure, also with x y values
-//var treasureX = 2
-//var treasureY = 1
-
 //Killer Monster location generated randomly based on maxX and maxY variables
 var killerX = Math.floor((Math.random() * maxX) + 1)
 var killerY = Math.floor((Math.random() * maxY) + 1)
 
-//Safe home location generated randomly based on maxX and maxY variables
-//var safeHomeX = Math.floor((Math.random() * maxX) + 1)
-//var safeHomeY = Math.floor((Math.random() * maxY) + 1)
+//Used in testing to verify random location. 
+console.log("           Killer location    " +killerX)
+console.log("           Killer location    " +killerY)
+
+//Testing - killer non-random location. 
+//var killerX = 4
+//var killerY = 1
+
+//Testing - safeHome non-random location.
+//var safeHomeX = 5
+//var safeHomeY = 3
+
+//Safe Home location generated randomly based on maxX and maxY variables
+var safeHomeX = Math.floor((Math.random() * maxX) + 1)
+var safeHomeY = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("             Safety location    " +safeHomeX)
+console.log("             Safety location    " +safeHomeY)
+
+//Safe Home location generated randomly based on maxX and maxY variables
+var mameX = Math.floor((Math.random() * maxX) + 1)
+var mameY = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("             Safety location    " +mameX)
+console.log("             Safety location    " +mameY)
 
 // Flag that controls loop 
 var killerFound = false
 
 // Flag that controls loop
-//var safeHomeFound = false
+var safeHomeFound = false
+
+// Flag that controls loop
+var mamingFound = false
 
 
 
-//alert("You button was pressed");
-//console.log("Hello World");
-//var name = prompt("Welcome brave adventurer! What are you called?");
   // Get user's name
 var name = prompt("What name shall we put on your tombstone?")
 console.log("Run " +name+ " before they get you!!!")
@@ -151,18 +174,26 @@ while(!killerFound){
   console.log("The user's y is: " + userY)
   
   
-  // see if user location matches treasure
+  // see if user location matches the Killer
   if(userX == killerX && userY == killerY){
     console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel of the axe sink into your chest. You were killed. Better luck next time")
     
    killerFound = true 
   }
-    // see if user location matches treasure
-  //if(userX == safeHomeX && userY == safeHomeY){
-   // console.log("You emerge from the woods on to a road where your friends have come to look for you.")
+  
+  // see if user location matches the Killer
+  if(userX == mameX && userY == mameY){
+    console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel glance off your shoulder creating a huge gash. The Killer loose the grip on the axe. Which way do you run?")
     
-   //safeHomeFound = true 
- // }
+   mameFound = true 
+  }
+    // see if user location matches Safe Home
+  if(userX == safeHomeX && userY == safeHomeY){
+   console.log("You emerge from the woods on to a road where your friends have come to look for you. Behind you hear a frustrated sigh as you watch the killer slumps shoulders walk sullenly back into the woods.")
+    
+   safeHomeFound = true 
+    {break;}
+ }
 }
   }
   
