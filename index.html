@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>The Game</title>
+  <title>Spookywood</title>
    <link rel="stylesheet" type="text/css" href="style/style.css">
    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
    <link rel="shortcut icon" href="#" />
@@ -13,21 +13,12 @@
 <body>
  
   <section>
-   <h1>Can you get home safely?</h1>
+  
+   <h1>Can you survive the spooky forest?</h1>
      
        <img src="img/Blue-spookywoods2.jpg" alt="blue tinted spooky woods">
-       <input id="button" type="submit" name="button" onclick="myFunction();" value="enter, if you dare..."/>
-       
-       <!-- "feature added for testers javascript to consolef" maybe Accordian element to replace this-->
-       
-        <!--  <p class="instructions">
-          This is a javascript console game.<br>
-           To play game push f12 to open the 'developers tools'<br>
-           In the top menu choose 'Console'<br>
-           Then come back and push the 'Enter if you dare' button above<br>
-          </p> -->
-       
-
+       <input id="button" type="submit" name="button" onclick="startGame();" value="enter, if you dare..."/>
+  
   </section>
       
    <footer>
@@ -56,14 +47,11 @@
 //NN output to webpage to update picture with each direction prompt,or show home picture or random killer picture picked from //list.
 //
      
-function myFunction(){
+function startGame(){
   
   // Define the size of the game play area
 var maxX = 8
 var maxY = 8
-
-//Randomly define the size of the game play area.
-
 
 // User starts at x0, y0 (bottom left of board)
 var userX = 0
@@ -111,6 +99,8 @@ var safeHomeFound = false
 var mamingFound = false
 
 alert("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
+  
+  
 
   // Get user's name
 var name = prompt("What name will Search and Rescue call out to find you?")
@@ -206,6 +196,7 @@ while(!killerFound){
     {break;}
  }
 }
+  
   }
   
 </script>
