@@ -20,12 +20,12 @@
        
        <!-- "feature added for testers javascript to consolef" maybe Accordian element to replace this-->
        
-          <p class="instructions">
+        <!--  <p class="instructions">
           This is a javascript console game.<br>
            To play game push f12 to open the 'developers tools'<br>
            In the top menu choose 'Console'<br>
            Then come back and push the 'Enter if you dare' button above<br>
-          </p>
+          </p> -->
        
 
   </section>
@@ -110,11 +110,11 @@ var safeHomeFound = false
 // Flag that controls loop
 var mamingFound = false
 
-console.log("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
+alert("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
 
   // Get user's name
 var name = prompt("What name will Search and Rescue call out to find you?")
-console.log("Snapping twigs and a rustle of brush, run " +name+ " before they get you!!!")
+alert("Snapping twigs and a rustle of brush, run " +name+ " before they get you!!!")
 
 
 while(!killerFound){
@@ -140,7 +140,7 @@ while(!killerFound){
       userY = newY
       
     }else {
-     console.log("You stop just in time before plummeting over the edge of a huge cliff") 
+     alert("You stop just in time before plummeting over the edge of a huge cliff") 
     }
  
   }else if(direction == "east"){
@@ -151,7 +151,7 @@ while(!killerFound){
       userX = newX 
       userY = newY
     }else {
-     console.log("You feel a sudden shock as you run into an electrified fence") 
+     alert("You feel a sudden shock as you run into an electrified fence") 
     }
     
   }else if(direction == "south"){
@@ -162,7 +162,7 @@ while(!killerFound){
       userX = newX 
       userY = newY
     }else {
-     console.log("You've gone off the trail and the thick undergrowth blocks your way.") 
+     alert("You've gone off the trail and the thick undergrowth blocks your way.") 
     }
     
   }else if(direction == "west"){
@@ -173,11 +173,11 @@ while(!killerFound){
       userX = newX 
       userY = newY
     }else {
-     console.log("You hear the sound of footsteps on the leaves, you stop and go another way.") 
+     alert("You hear the sound of footsteps on the leaves, you stop and go another way.") 
     }
     
   }else {
-   console.log("Don't waste time please enter a real direction to run.") 
+   alert("Don't waste time please enter a real direction to run.") 
   }
   
   console.log("The user's x is: " + userX)
@@ -186,20 +186,20 @@ while(!killerFound){
   
   // see if user location matches the Killer
   if(userX == killerX && userY == killerY){
-    console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel of the axe sink into your chest. You were killed. Better luck next time")
+    alert("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel of the axe sink into your chest. You were killed. Better luck next time")
     
    killerFound = true 
   }
   
   // see if user location matches the Killer
   if(userX == mameX && userY == mameY){
-    console.log("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel glance off your shoulder creating a huge gash. The Killer loose the grip on the axe. Which way do you run?")
+    alert("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel glance off your shoulder creating a huge gash. The Killer loose the grip on the axe. Which way do you run?")
     
    mameFound = true 
   }
     // see if user location matches Safe Home
   if(userX == safeHomeX && userY == safeHomeY){
-   console.log("You emerge from the woods on to a road where your friends have come to look for you. Behind you hear a frustrated sigh as you watch the killer slumps shoulders walk sullenly back into the woods.")
+   alert("You emerge from the woods on to a road where your friends have come to look for you. Behind you hear a frustrated sigh as you watch the killer slumps shoulders walk sullenly back into the woods.")
     
    safeHomeFound = true 
     {break;}
