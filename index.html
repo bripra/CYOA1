@@ -50,8 +50,8 @@
 function startGame(){
   
   // Define the size of the game play area
-var maxX = 8
-var maxY = 8
+var maxX = 7
+var maxY = 7
 
 // User starts at x0, y0 (bottom left of board)
 var userX = 0
@@ -62,8 +62,8 @@ var killerX = Math.floor((Math.random() * maxX) + 1)
 var killerY = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location. 
-console.log("                   Killer location    " +killerX)
-console.log("                   Killer location    " +killerY)
+console.log("                   Axe killer location    " +killerX)
+console.log("                   Axe killer location    " +killerY)
 
 //Testing - killer non-random location. 
 //var killerX = 4
@@ -81,13 +81,30 @@ var safeHomeY = Math.floor((Math.random() * maxY) + 1)
 console.log("                   Safety location    " +safeHomeX)
 console.log("                   Safety location    " +safeHomeY)
 
-//Safe Home location generated randomly based on maxX and maxY variables
+//mame location generated randomly based on maxX and maxY variables
 var mameX = Math.floor((Math.random() * maxX) + 1)
 var mameY = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location
 console.log("                    Mame location    " +mameX)
 console.log("                    Mame location    " +mameY)
+  
+//Killer2 location
+var killer2X = Math.floor((Math.random() * maxX) + 1)
+var killer2Y = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("                    Black Eyed Children location    " +killer2X)
+console.log("                    Black Eyed Children location    " +killer2Y)
+  
+//Killer2 location
+var killer3X = Math.floor((Math.random() * maxX) + 1)
+var killer3Y = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("                    Killer clown location    " +killer3X)
+console.log("                    Killer clown location    " +killer3Y)
+  
 
 // Flag that controls loop 
 var killerFound = false
@@ -97,6 +114,12 @@ var safeHomeFound = false
 
 // Flag that controls loop
 var mamingFound = false
+
+//Flag that controls loop
+var killer2Found = false
+
+//Flag that controls loop
+var killer3Found = false
 
 alert("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
   
@@ -172,6 +195,8 @@ while(!killerFound){
   
   console.log("The user's x is: " + userX)
   console.log("The user's y is: " + userY)
+  
+  //This did not test well. Need better way to display user location.
   //alert("User's x is "+userX+" and User's y is "+userY)
   
   
@@ -188,6 +213,23 @@ while(!killerFound){
     
    mameFound = true 
   }
+  
+    // see if user location matches the Killer
+  if(userX == killer2X && userY == killer2Y){
+    alert("You feel the scream leave your throat too late as you tumble to the ground. Unable to stand as the black-eyed children has cut your Achilles tendon before they start driving their knives into laughing.")
+    
+    
+   killer2Found = true 
+    {break;}
+  }
+    // see if user location matches the Killer
+  if(userX == killer3X && userY == killer3Y){
+    alert("You kick, punch, claw and bite at the creepy clown but nothing seems to phase it as it drags you towards the partially collapsed stone structured. You notice spray painted on the left side of the door “Free Hugs” and an arrow just before everything goes black.")
+    
+    
+   killer3Found = true 
+    {break;}
+  }
     // see if user location matches Safe Home
   if(userX == safeHomeX && userY == safeHomeY){
    alert("You emerge from the woods on to a road where your friends have come to look for you. Behind you hear a frustrated sigh as you watch the killer slumps shoulders walk sullenly back into the woods.")
@@ -198,6 +240,7 @@ while(!killerFound){
 }
   
   }
+
   
 </script>
     
