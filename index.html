@@ -50,8 +50,8 @@
 function startGame(){
   
   // Define the size of the game play area
-var maxX = 7
-var maxY = 7
+var maxX = 8
+var maxY = 8
 
 // User starts at x0, y0 (bottom left of board)
 var userX = 0
@@ -89,6 +89,14 @@ var mameY = Math.floor((Math.random() * maxY) + 1)
 console.log("                    Mame location    " +mameX)
 console.log("                    Mame location    " +mameY)
   
+//mame location generated randomly based on maxX and maxY variables
+var dollHeadsX = Math.floor((Math.random() * maxX) + 1)
+var dollHeadsY = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("                    Doll heads location    " +dollHeadsX)
+console.log("                    Doll heads location    " +dollHeadsY)
+  
 //Killer2 location
 var killer2X = Math.floor((Math.random() * maxX) + 1)
 var killer2Y = Math.floor((Math.random() * maxY) + 1)
@@ -122,6 +130,9 @@ var safeHomeFound = false
 
 // Flag that controls loop
 var mamingFound = false
+
+// Flag that controls loop
+var dollHeadsFound = false
 
 //Flag that controls loop
 var killer2Found = false
@@ -223,6 +234,13 @@ while(!killerFound){
     alert("Your blood curdling scream echoes throughout the dark forest as you feel the cold steel glance off your shoulder creating a huge gash. The Killer loose the grip on the axe. Which way do you run?")
     
    mameFound = true 
+  }
+  
+  // see if user location matches the Killer
+  if(userX == dollHeadsX && userY == dollHeadsY){
+    alert("As you walk you notice small shiny pairs of what appear to be eyes reflected in the beam of your flashlight. As you draw closer you see old mangled doll heads hanging from branches all facing you, looking at you, watching you. Then you feel the hair on the back of your neck stand up as a cold bead of sweat runs down your back you hear from behind you a child’s giggle.")
+    
+   dollHeadsFound = true 
   }
   
     // see if user location matches the Killer
