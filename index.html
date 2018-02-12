@@ -97,13 +97,21 @@ var killer2Y = Math.floor((Math.random() * maxY) + 1)
 console.log("                    Black Eyed Children location    " +killer2X)
 console.log("                    Black Eyed Children location    " +killer2Y)
   
-//Killer2 location
+//Killer clowns location
 var killer3X = Math.floor((Math.random() * maxX) + 1)
 var killer3Y = Math.floor((Math.random() * maxY) + 1)
 
 //Used in testing to verify random location
 console.log("                    Killer clown location    " +killer3X)
 console.log("                    Killer clown location    " +killer3Y)
+  
+//Wendigo location
+var wendigoX = Math.floor((Math.random() * maxX) + 1)
+var wendigoY = Math.floor((Math.random() * maxY) + 1)
+
+//Used in testing to verify random location
+console.log("                    wendigo location    " +wendigoX)
+console.log("                    wendigo location    " +wendigoY)
   
 
 // Flag that controls loop 
@@ -120,6 +128,9 @@ var killer2Found = false
 
 //Flag that controls loop
 var killer3Found = false
+
+//Flag that controls loop
+var wendigoFound = false
 
 alert("You are driving along on this cold foggy night when suddenly you hear the sound of metal on metal screeching as your car gasps and lurches to its final resting place. You exit the car as you hear the brush rustle off in the darkened woods.")
   
@@ -228,6 +239,15 @@ while(!killerFound){
     
     
    killer3Found = true 
+    {break;}
+  }
+  
+  // see if user location matches the Killer
+  if(userX == wendigoX && userY == wendigoY){
+    alert("There is a foul stench in the air as you hear a rustle in the tree branches above. You look towards the heavens as you feel a great weight slam down on top of you. You try to scream but as you open your mouth your jaw is swiped away leaving a gaping bloody gash. Your tongue is ripped from what used to be your mouth and you feel claws sink into your chest hearing your ribs break you feel yourself drift towards the black. Food for Wendigos")
+    
+    
+   wendigoFound = true 
     {break;}
   }
     // see if user location matches Safe Home
