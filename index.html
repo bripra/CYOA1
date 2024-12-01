@@ -1,31 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <link rel="stylesheet" type="text/css" href="style/style.css">
-    <meta charset="UTF-8" />
-    <title>The Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
-    
+  <meta charset="UTF-8">
+  <title>Horror Hunter</title>
+  <style>
+    body {
+      background-color: #222;
+      color: #fff;
+      font-family: 'Helvetica', sans-serif;
+      margin: 0;
+    }
+
+    #map {
+      display: grid;
+      grid-template-columns: repeat(10, 50px);
+      grid-template-rows: repeat(10, 50px);
+      gap: 5px;
+      background-color: #333;
+      padding: 5px;
+      border: 5px solid #666;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .cell {
+      width: 50px;
+      height: 50px;
+      background-color: #2c3e50;
+      border: 1px solid #777;
+      background-image: url('img/tile2.png');
+      background-size: cover;
+      box-shadow: inset 0 0 5px #555;
+    }
+
+    #user {
+      width: 100%;
+      height: 100%;
+      background-image: url('img/hearthero.jpg');
+      background-size: cover;
+      border-radius: 10px;
+    }
+
+    #monster {
+      width: 100%;
+      height: 100%;
+      background-image: url('img/ilehj856ijt21.png');
+      background-size: cover;
+    }
+
+    #safeTile {
+      width: 100%;
+      height: 100%;
+      background-image: url('img/creepytree.jpg'); /* Image for the safe tile */
+      background-size: cover;
+    }
+
+    #message {
+      margin-top: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    #confirmation {
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 5px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="button"] {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+
+    input[type="button"]:hover {
+      background-color: #666;
+    }
+  </style>
 </head>
 <body>
-  <section>
-   <h1>Can you get home safely?</h1>
-     <a href="#">
-       <img src="img/Blue-spookywoods2.jpg" alt="blue tinted spooky woods">
-     </a>
-   <p>Click on the trail to start</p>
-  
-   
-   </section>
-   
-   
-   <footer>
-     <audio controls loop>
-     <source src="media/Mystified_-_03_-_Spooky_Theme.mp3">
-     
-   </audio>
-     
-   </footer>
-    
+
+<div id="map"></div>
+<div>
+  <button id="northBtn" onclick="move('north')">North</button>
+  <button id="southBtn" onclick="move('south')">South</button>
+  <button id="eastBtn" onclick="move('east')">East</button>
+  <button id="westBtn" onclick="move('west')">West</button>
+</div>
+<div id="message"></div>
+<div id="confirmation">
+  <input type="button" value="Yes" onclick="restartGame()">
+  <input type="button" value="No" onclick="endGame()">
+</div>
+
+<script>
+  var maxX = 9;
+  var maxY = 9;
+  var userX = 0;
+  var userY = 0;
+  var monsterX = Math.floor(Math.random() * (maxX + 1));
+  var monsterY = Math.floor(Math.random() * (maxY + 1));
+  var safeTileX = Math.floor(Math.random() * (maxX + 1));
+  var safeTileY = Math.floor(Math.random() * (maxY + 1));
+  var creepyMessages = [
+    'You feel a cold breath on the back of your neck...',
+    'Strange whispers echo through the darkness...',
+    'The shadows seem to be watching you...',
+    'A distant howl chills your bones...',
+    'Unseen eyes follow your every move...',
+    'A sudden gust of wind makes you shiver...'
+  ];
+
+  var stepsBeforeMessage = 5;
+  var message = '';
+  var currentLevel = 0; // Start level at 0
+  var buttonsDisabled = false;
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function getRandomCreepyMessage() {
+    return creepyMessages[Math.floor(Math.random() * creepyMessages.length)];
+  }
+
+  function renderMap() {
+    var map = document.getElementById('map');
+    map.innerHTML = '';
+    for (var y = 0; y <= maxY; y++) {
+      for (var x = 0; x <= maxX; x++) {
+        var cell = document.createElement('div');
+        cell.classList.add('cell');
+        if (x === userX && y === userY) {
+          cell.setAttribute('id', 'user');
+        } else if (x === monsterX && y === monsterY) {
+          cell.setAttribute('id', 'monster');
+        } else if (x === safeTileX && y === safeTileY) {
+          cell.setAttribute('id', 'safeTile');
+        }
+        map.appendChild(cell);
+      }
+    }
+  }
+
+  function displayMessage(msg) {
+    var messageDiv = document.getElementById('message');
+    messageDiv.innerHTML = msg;
+  }
+
+  function move(direction) {
+    if (buttonsDisabled) {
+      return;
+    }
+
+    // Move the user
+    switch (direction) {
+      case 'north':
+        userY = Math.max(userY - 1, 0);
+        break;
+      case 'south':
+        userY = Math.min(userY + 1, maxY);
+        break;
+      case 'east':
+        userX = Math.min(userX + 1, maxX);
+        break;
+      case 'west':
+        userX = Math.max(userX - 1, 0);
+        break;
+    }
+
+    // Move the monster either vertically or horizontally toward the user
+    var verticalMove = getRandomInt(0, 1) === 0; // 50% chance for vertical move
+    if (verticalMove) {
+      if (monsterY < userY) {
+        monsterY = Math.min(monsterY + 1, maxY);
+      } else if (monsterY > userY) {
+        monsterY = Math.max(monsterY - 1, 0);
+      }
+    } else {
+      if (monsterX < userX) {
+        monsterX = Math.min(monsterX + 1, maxX);
+      } else if (monsterX > userX) {
+        monsterX = Math.max(monsterX - 1, 0);
+      }
+    }
+
+    renderMap();
+
+    // Check if user encounters the monster
+    if (userX === monsterX && userY === monsterY) {
+      buttonsDisabled = true;
+      endGame();
+    } else if (userX === safeTileX && userY === safeTileY) {
+      buttonsDisabled = true;
+      // User landed on the safe tile, prompt to continue to the next level
+      currentLevel++;
+      displayMessage('Congratulations! Move to the next Level');
+      showConfirmation();
+    } else {
+      buttonsDisabled = false;
+      stepsBeforeMessage--;
+      if (stepsBeforeMessage === 0) {
+        message = getRandomCreepyMessage();
+        displayMessage(message);
+        stepsBeforeMessage = getRandomInt(3, 7);
+      }
+    }
+  }
+
+  function showConfirmation() {
+    var confirmationDiv = document.getElementById('confirmation');
+    confirmationDiv.style.display = 'block';
+  }
+
+  function restartGame() {
+    currentLevel = 0; // Reset level to 0
+    resetGame();
+    hideConfirmation();
+    //displayMessage('Game restarted!');
+    buttonsDisabled = false;
+  }
+
+  function endGame() {
+    hideConfirmation();
+    displayMessage('You encountered a horrifying monster! Do you want to restart the game?');
+    showConfirmation();
+  }
+
+  function hideConfirmation() {
+    var confirmationDiv = document.getElementById('confirmation');
+    confirmationDiv.style.display = 'none';
+  }
+
+  function resetGame() {
+    userX = 0;
+    userY = 0;
+    monsterX = Math.floor(Math.random() * (maxX + 1));
+    monsterY = Math.floor(Math.random() * (maxY + 1));
+    safeTileX = Math.floor(Math.random() * (maxX + 1));
+    safeTileY = Math.floor(Math.random() * (maxY + 1));
+    renderMap();
+  }
+
+  // Add event listener for keyboard arrows
+  document.addEventListener('keydown', function(event) {
+    if (buttonsDisabled) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        move('north');
+        break;
+      case 'ArrowDown':
+        move('south');
+        break;
+      case 'ArrowLeft':
+        move('west');
+        break;
+      case 'ArrowRight':
+        move('east');
+        break;
+    }
+  });
+
+  renderMap();
+</script>
+
 </body>
 </html>
